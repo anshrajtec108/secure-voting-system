@@ -1,0 +1,23 @@
+version: '3'
+services:
+  frontend:
+    image: my_frontend_image
+    networks:
+      - my_isolated_network
+  
+  backend:
+    image: votingSystemBackend_image
+    networks:
+      - votingSystem_network
+  
+networks:
+ votingSystem_network:
+    driver: bridge
+
+    backend:
+    image: votingSystemBackend_image
+    volumes:
+      - logs_volume:/var/log/myapp
+
+volumes:
+  logs_volume:
